@@ -1,0 +1,20 @@
+139,00€
+
+Maletin de poker 500 fichas Montecarlo:
+El maletin de 500 fichas modelo MONTE CARLO de 14gr esta compuesto por:
+
+– 150 fichas de valor 1
+– 100 fichas de valor 5
+– 100 fichas de valor 10
+– 50 fichas de valor 25
+– 50 fichas de valor 50
+– 50 fichas de valor 100
+– 2 barajas
+– 1 Botón de Dealer
+– 2 barajas de poker de 52 cartas
+– 5 dados
+
+//!( mirar si hemos puesto catuchos de 25 fichas en fichas) 
+En cualquier caso, siempre podrás adquirir si lo necesitas, fichas sueltas (en cartuchos de 25 fichas) como recarga y aumentar el número de colores (valores).
+
+El maletin de poker contiene 500 fichas Montecarlo en Clay de 14 gr.
