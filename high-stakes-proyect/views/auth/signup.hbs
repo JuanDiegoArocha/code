@@ -1,0 +1,54 @@
+<div>
+
+    <h2>Sign Up</h2>
+
+    <form action="/auth/signup" method="post">
+    
+    <label for="firstName">First name:</label>
+    <input type="text" name="firstName">
+
+    <br>
+
+    <label for="lastName">Last name:</label>
+    <input type="text" name="lastName">
+
+    <br>
+    
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+
+    <br>
+
+    <label for="Email">Email:</label>
+    <input type="Email" name="Email">
+
+    <br>
+
+    <label for="address">Address:</label>
+    <input type="text" name="address">
+
+    <br>
+
+    <label for="city">City:</label>
+    <input type="text" name="city">
+
+    <br>
+
+    <label for="postalCode">Postal Code:</label>
+    <input type="Number" name="postalCode">
+
+    <br>
+
+    <label for="dateOfBirth">Birthdate:</label>
+    <input type="date" name="dateOfBirth">
+
+    <br>
+
+    <button>Sign up</button>
+
+    {{#if this.errorMessage}}
+        <p style="color: red;">{{this.errorMessage}}</p>
+    {{/if}}
+    </form>
+
+</div>
