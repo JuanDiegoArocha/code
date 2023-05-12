@@ -1,5 +1,25 @@
 <div>
 
-    <h2>Log in</h2>
+    <h1>Log in</h1>
+
+    <form action="/auth/login" method="post">
+    
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+    </div>
+
+    <button>Access</button>
+
+    {{#if this.errorMessage}}
+    <p style="color: red;">{{this.errorMessage}}</p>
+    {{/if}}
+    
+    </form>
 
 </div>

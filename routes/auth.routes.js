@@ -18,15 +18,17 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
     try {
 
-        const { firstName, lastName, email, password, direction, city, postalCode, dateOfBirth } = req.body;
+        const { firstName, lastName, email, password, address, city, postalCode, dateOfBirth } = req.body;
         console.log(req.body)
 
         // Check if all fields have information
     
-        if (firstName === undefined || lastName == undefined || email == undefined || password == undefined || direction == undefined || city === undefined || postalCode == undefined || dateOfBirth == undefined) {
+        if (firstName === undefined || lastName == undefined || email == undefined || password == undefined || address == undefined || city === undefined || postalCode == undefined || dateOfBirth == undefined) {
             console.log("Please fill in all fields");
-            res.redirect("/auth/signup");
-            errorMessage = "Please fill in all fields";
+            res.render("auth/signup", {
+                errorMessage: "Please fill in all fields",
+
+            });
             return; 
         }
 
@@ -34,9 +36,10 @@ router.post("/signup", async (req, res, next) => {
         // Password must be at least 8 characters long and contain at least one number and one letter (valid characters are A-Z, a-z, 0-9) 
         const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
         if (regexPassword.test(password) === false) {
-            return res.render("auth/signup.hbs", {
+             res.render("auth/signup.hbs", {
                 errorMessage: "Password must be at least 8 characters long and contain at least one number and one letter (valid characters are A-Z, a-z, 0-9)" 
             })
+            return
         }
 
         // Password encryption
@@ -59,6 +62,7 @@ router.post("/signup", async (req, res, next) => {
             res.render("auth/signup.hbs", {
                 errorMessage: "Email already exists"
             }) 
+            return
         }
 
         // Create new user in the database
@@ -67,7 +71,7 @@ router.post("/signup", async (req, res, next) => {
             lastName: lastName,
             email: email,
             password: hashedPassword,
-            direction: direction,
+            address: address,
             city: city,
             postalCode: postalCode,
             dateOfBirth: dateOfBirth
@@ -75,14 +79,7 @@ router.post("/signup", async (req, res, next) => {
 
         // Redirect to the login page
         res.redirect("/auth/login");
-
-
-
-
         
-
-
-
 
     } catch (error) {
         next(error);   
@@ -101,9 +98,61 @@ router.get("/login", (req, res, next) => {
 
 
 
-
-
 // POST "/auth/login" => Login
+router.post("/login", async (req, res, next) => {
+
+
+    try {
+
+    const { email, password } = req.body; 
+
+    // Check if all fields have information
+    if (email === undefined || password == undefined) {
+        console.log("Please fill in all fields");
+        res.render("auth/login");
+        errorMessage = "Please fill in all fields";
+        return; 
+    } 
+
+    // Email already exists in the database
+    const foundUser = await User.findOne({ email: email });
+    if (foundUser === null) {
+        res.render("auth/login.hbs", {
+            errorMessage: "Email does not exist"
+        }) 
+    } 
+    console.log(foundUser,"Email does not exist");
+
+    // rigth password is correct
+    const correctPassword = await bcrypt.compare(req.body.password, foundUser.password);
+    if (correctPassword === false) {
+        res.render("auth/login.hbs", {
+            errorMessage: "Wrong password"
+        }) 
+        return
+    } 
+    console.log(correctPassword,"Wrong password");  
+
+
+    // req.session.user = foundUser; // Save the user in the session
+
+    // req.session.save(() => {
+    //     res.redirect("/");
+    // })
+
+    //! chequear error de inicio de sesion con jorge.
+
+    res.redirect("/");
+
+
+
+
+        
+    } catch (error) {
+        next(error);
+    }
+
+});
 
 
 module.exports = router;
