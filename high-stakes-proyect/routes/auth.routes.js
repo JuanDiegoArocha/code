@@ -18,12 +18,12 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
     try {
 
-        const { firstName, lastName, email, password, direction, city, postalCode, dateOfBirth } = req.body;
+        const { firstName, lastName, email, password, address, city, postalCode, dateOfBirth } = req.body;
         console.log(req.body);
 
         // Check if all fields have information
     
-        if (firstName === "" || lastName == "" || email == "" || password == "" || direction == "" || city === "" || postalCode == "" || dateOfBirth == "") {
+        if (firstName === "" || lastName == "" || email == "" || password == "" || address == "" || city === "" || postalCode == "" || dateOfBirth == "") {
             console.log("Please fill in all fields");
             res.redirect("/auth/signup");
             errorMessage = "Please fill in all fields";
@@ -67,7 +67,7 @@ router.post("/signup", async (req, res, next) => {
             lastName: lastName,
             email: email,
             password: hashedPassword,
-            direction: direction,
+            address: address,
             city: city,
             postalCode: postalCode,
             dateOfBirth: dateOfBirth
