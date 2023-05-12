@@ -19,7 +19,7 @@ router.post("/signup", async (req, res, next) => {
     try {
 
         const { firstName, lastName, email, password, direction, city, postalCode, dateOfBirth } = req.body;
-        console.log(req.body);
+        console.log(req.body)
 
         // Check if all fields have information
     
