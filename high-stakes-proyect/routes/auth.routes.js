@@ -23,7 +23,7 @@ router.post("/signup", async (req, res, next) => {
 
         // Check if all fields have information
     
-        if (firstName === "" || lastName == "" || email == "" || password == "" || direction == "" || city === "" || postalCode == "" || dateOfBirth == "") {
+        if (firstName === undefined || lastName == undefined || email == undefined || password == undefined || direction == undefined || city === undefined || postalCode == undefined || dateOfBirth == undefined) {
             console.log("Please fill in all fields");
             res.redirect("/auth/signup");
             errorMessage = "Please fill in all fields";
