@@ -1,0 +1,18 @@
+<div>
+
+<h3>aqui la lista de productos</h3>
+
+<ul>
+  {{#each this.allProducts}}
+  <li>
+    Producto:
+   <a href="/product/{{this.id}}/edit"> {{this.name}}</a>
+    -
+    {{!-- {{this.description}} 
+    {{this.price}} --}}
+    {{this.stock}} unidades
+    </li>
+  {{/each}}
+  </ul>
+
+</div>
