@@ -30,7 +30,18 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
 });
 
 
-// Cart route
+// GET Cart route
+router.get("/cart", isLoggedIn, async (req, res, next) => {
+    
+    try {
+        res.render("user/cart.hbs")
+        
+    } catch (error) {
+        next (error)
+    }
+
+})
+
 
 
 module.exports = router;
