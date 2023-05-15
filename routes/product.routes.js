@@ -44,6 +44,11 @@ const router = express.Router();
  });
 
 
+//! Ruta de la lista de produtcos
+//GET "/list" -> queremos ver la lista de todos los productos de la base de datos
+
+
+
  //! Ruta para editar productos en la base de datos
  //GET "/:productId/edit" -> renderizar un formulario de edit (con los valores actuales del producto)
 /*

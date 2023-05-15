@@ -107,7 +107,7 @@ router.post("/login", async (req, res, next) => {
     const { email, password } = req.body; 
 
     // Check if all fields have information
-    if (email === undefined || password == undefined) {
+    if (!email || !password) {
         console.log("Please fill in all fields");
         res.render("auth/login");
         errorMessage = "Please fill in all fields";
@@ -116,7 +116,7 @@ router.post("/login", async (req, res, next) => {
 
     // Email already exists in the database
     const foundUser = await User.findOne({ email: email });
-    if (foundUser === null) {
+    if (!foundUser) {
         res.render("auth/login.hbs", {
             errorMessage: "Email does not exist"
         }) 
@@ -124,28 +124,24 @@ router.post("/login", async (req, res, next) => {
     console.log(foundUser,"Email does not exist");
 
     // rigth password is correct
-    const correctPassword = await bcrypt.compare(req.body.password, foundUser.password);
-    if (correctPassword === false) {
+    const isCorrectPassword = await bcrypt.compare(password, foundUser.password);
+    if (!isCorrectPassword) {
         res.render("auth/login.hbs", {
             errorMessage: "Wrong password"
         }) 
         return
     } 
-    console.log(correctPassword,"Wrong password");  
+    console.log(isCorrectPassword,"Password");  
 
 
-    // req.session.user = foundUser; // Save the user in the session
+     req.session.user = foundUser; // Create a new session for the logged in user
 
-    // req.session.save(() => {
-    //     res.redirect("/");
-    // })
+     console.log(req.session.user,"Login");
 
-    //! chequear error de inicio de sesion con jorge.
-
-    res.redirect("/");
-
-
-
+     req.session.save(() => {
+         
+         res.redirect("/user/profile");
+     })
 
         
     } catch (error) {
@@ -160,5 +156,16 @@ router.post("/login", async (req, res, next) => {
 
 
 
+
+// GET "/auth/logout" => Logout session with 
+
+router.get("/logout", (req, res, next) => {
+    req.session.destroy((error) => {
+        if (error) {
+            next(error);
+        } 
+        res.redirect("/");
+    })
+}) 
 
 module.exports = router;
