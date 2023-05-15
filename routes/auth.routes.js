@@ -140,7 +140,7 @@ router.post("/login", async (req, res, next) => {
 
      req.session.save(() => {
          
-         res.redirect("/user/profile");
+         res.redirect("/");
      })
 
         
