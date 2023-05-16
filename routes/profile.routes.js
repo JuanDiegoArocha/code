@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User= require("../models/User.model")
+const Product= require("../models/Product.model")
 
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 
@@ -101,13 +102,47 @@ router.post("/edit-profile", isLoggedIn, async (req, res, next) => {
 router.get("/cart", isLoggedIn, async (req, res, next) => {
     
     try {
-        res.render("user/cart.hbs")
+
+        const userId = req.session.user._id;
+        const user = await User.findById(userId)
+        .populate("cart.item")
+        
+        res.render("user/cart.hbs", {
+            cartItems: user.cart
+        })
+    } catch (error) {
+        next (error)
+    }
+
+})
+
+
+// POST route "/cart/add" => add to cart 
+router.post("/cart/add", isLoggedIn, async (req, res, next) => {
+
+    try {
+
+        const userId = req.session.user._id;
+        const { productId, quantity } = req.body;
+
+        // find the product in the database and add it to the cart
+        const user = await User.findById(userId)
+        const product = await Product.findById(productId)
+
+        // add the product to the cart 
+        user.cart.push({
+            item: product._id,
+            quantity
+        })
+        
+        res.redirect("/user/cart")
         
     } catch (error) {
         next (error)
     }
 
 })
+
 
 
 
