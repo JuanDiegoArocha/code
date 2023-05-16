@@ -14,22 +14,25 @@
       
        <nav>
          <a href="/">Home</a>
-         {{#if user}}
+         {{#if isUserActive}}
          <a href="/user/profile">Profile</a>
          <a href="/user/cart">Cart</a>
          <a href="/user/pay">Pay</a>
-         <a href="/user/logout">Logout</a>
-         <p>{{session.user}}</p>
-          {{/if}}
-          {{#unless user}}
+         <a href="/auth/logout">Logout</a>
+         {{else}}
          <a href="/auth/signup">Sign up</a>
          <a href="/auth/login">Log in</a>
          <a href="/product/create" style="color: red" >Crear producto</a>
          {{!-- <a href="/product/edit" style="color: red">Editar un producto</a>  --}}
          <a href="/product/list" style="color: red">Lista de productos</a>
+<<<<<<< HEAD
          {{!-- <a href="/product/details" style="color: red">Detalles del producto</a> --}}
          {{/unless}}
          {{!-- revisar mañana con jorge --}}
+=======
+         {{/if}}
+      
+>>>>>>> 5d036cb510ae23fa533db59d141cdb1a025210b8
 
         
 

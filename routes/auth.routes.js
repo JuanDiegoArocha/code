@@ -163,8 +163,10 @@ router.get("/logout", (req, res, next) => {
     req.session.destroy((error) => {
         if (error) {
             next(error);
-        } 
-        res.redirect("/");
+        } else {
+
+            res.redirect("/");
+        }
     })
 }) 
 
