@@ -2,17 +2,27 @@
 
     <h2>Cart</h2>
 
-    {{#if cartItems.length}}
-    <ul>
-        {{#each cartItems}}
-        <li>
+    
 
-            <p><b>Product:</b>{{this.name}}</p>
-            <p><b>Quantity:</b>{{this.quantity}}</p>
+    <ul>
+        {{#each this.userCart.cart}}
+        <li>
+        <p>Product:{{this.item.name}}</p>
+        <p>Quantity:{{this.quantity}}</p>
+        <p>Price:{{this.item.price}} €</p>
+
+        <button>Remove</button>
+
 
         </li>
         {{/each}}
     </ul>
-    {{/if}}
+
+
+   <p>Total Price: ${{calculateTotalPrice this.userCart.cart}}</p>
 
 </div>
+
+{{!-- Imprime el contenido del carrito --}}
+{{log this.userCart.cart}}
+

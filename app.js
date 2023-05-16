@@ -13,6 +13,16 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 
+hbs.registerHelper("calculateTotalPrice", function(cart) {
+    let totalPrice = 0;
+  
+    cart.forEach((item) => {
+      totalPrice += item.quantity * item.item.price;
+    });
+  
+    return totalPrice;
+  });
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware

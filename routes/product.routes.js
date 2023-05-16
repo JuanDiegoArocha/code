@@ -146,7 +146,7 @@ router.get("/:productId/details", (req, res, next) => {
     });
  
 
-
+//? PREGUNTAR MAÑANA A JORGE POR LA RUTA 
 
      
       

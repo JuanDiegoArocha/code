@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const mongoose = require('mongoose');
+
 const User= require("../models/User.model")
 const Product= require("../models/Product.model")
 
@@ -99,17 +101,30 @@ router.post("/edit-profile", isLoggedIn, async (req, res, next) => {
 
 
 // GET Cart route
-router.get("/cart", isLoggedIn, async (req, res, next) => {
+router.get("/:userId/cart", isLoggedIn, async (req, res, next) => {
     
-    try {
-
-        const userId = req.session.user._id;
-        const user = await User.findById(userId)
-        .populate("cart.item")
+    try {      
         
-        res.render("user/cart.hbs", {
-            cartItems: user.cart
+        const userId = req.session.user._id; 
+
+        const userCart = await User.findById(userId)
+        .populate({
+            path: "cart",
+            populate: {
+                path: "item",
+                model: "Product"
+            }
         })
+        
+        .select("cart")
+        console.log(userCart)
+     
+
+
+
+        
+        res.render("user/cart.hbs", { userCart })
+
     } catch (error) {
         next (error)
     }
@@ -117,32 +132,30 @@ router.get("/cart", isLoggedIn, async (req, res, next) => {
 })
 
 
-// POST route "/cart/add" => add to cart 
-router.post("/cart/add", isLoggedIn, async (req, res, next) => {
+// POST route "/cart" => add to cart 
+router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 
     try {
-
-        const userId = req.session.user._id;
-        const { productId, quantity } = req.body;
-
-        // find the product in the database and add it to the cart
-        const user = await User.findById(userId)
-        const product = await Product.findById(productId)
-
-        // add the product to the cart 
-        user.cart.push({
-            item: product._id,
-            quantity
-        })
         
-        res.redirect("/user/cart")
-        
+        const productId = req.params.productId;
+        const userId = req.session.user._id; 
+
+        await User.findByIdAndUpdate(userId, 
+            {$push: { cart: {quantity: 1, item: productId }}},)
+
+            res.redirect(`/user/${userId}/cart`)
+
+
     } catch (error) {
         next (error)
     }
 
 })
 
+
+// POST route "/:productId/remove" => remove from cart 
+
+  
 
 
 
