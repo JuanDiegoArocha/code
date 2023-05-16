@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+const updateLocals = require('../middleware/updateLocals.middleware');
+
+// update locals 
+router.use(updateLocals)
+
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");

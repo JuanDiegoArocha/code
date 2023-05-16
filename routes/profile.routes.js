@@ -3,7 +3,7 @@ const router = express.Router();
 
 const User= require("../models/User.model")
 
-const isLoggedIn = require('../middleware/auth.middlewares');
+const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 
 // private route
 
@@ -14,13 +14,27 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
     .then((user) => {
         console.log(user)
 
-        user.dateOfBirth = user.dateOfBirth.toString()
-        console.log(user.dateOfBirth.toString())
+        const dateOfBirth = user.dateOfBirth.toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric" 
+        })
+        console.log(user.dateOfBirth.toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric" 
+        }))
 
 
         res.render("user/profile.hbs", {
-            user
-        })
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            address: user.address,
+            city: user.city,
+            postalCode: user.postalCode,
+            dateOfBirth: dateOfBirth
+        });
 
     })
     .catch((err) => {
