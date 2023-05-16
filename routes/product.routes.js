@@ -133,16 +133,17 @@ router.get("/:productId/details", (req, res, next) => {
 
        //! Ruta borrar productos de la lista
 
-//   router.post("/:productId/delete", (req, res, next) => {
-//     // console.log(req.params);
-//      Product.findByIdAndDelete(req.params.productId)
-//        .then(() => {
-//          res.redirect("/product/list");
-//        })
-//        .catch((err) => {
-//          next(err);
-//        });
-//    });
+   router.post("/:productId/delete", (req, res, next) => {
+    
+      Product.findByIdAndDelete(req.params.productId)
+    
+      .then(() => {
+         res.redirect("/product/list");
+        })
+        .catch((err) => {
+          next(err);
+        });
+    });
  
 
 

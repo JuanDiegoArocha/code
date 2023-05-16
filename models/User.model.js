@@ -46,7 +46,6 @@ type: [{
 quantity: {type: Number},
 item: {type: Schema.Types.ObjectId,
 ref: "Product"}
- 
 }]
     },
   },
