@@ -2,17 +2,18 @@
 
 <h3>Aquí queremos editar los productos ya existentes</h3>
 
-<form action="/product/{{this.poductDetails._id}}/edit" method="post">
-
 {{!-- {{this.productDetails}} --}}
-{{this.productDetails.name}}
+{{!-- {{this.productDetails.name}}
 <br>
 {{this.productDetails.description}}
 <br>
 {{this.productDetails.price}}
 <br>
 {{this.productDetails.stock}}
-<br>
+<br> --}}
+
+
+<form action="/product/{{this.productDetails._id}}/edit" method="post">
 
 <label for="name">Modificar nombre</label>
 <input type="text" name="name" value="{{this.productDetails.name}}">
@@ -27,7 +28,7 @@
 <input type="number" name="stock" value="{{this.productDetails.stock}}">
 
 
-<button>Actualizar</button>
+<button type="submit">Editar</button>
 
 </form>
 </div>

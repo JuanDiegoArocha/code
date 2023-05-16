@@ -8,11 +8,11 @@
   {{#each this.allProducts}}
   <li>
     Producto:
-   <a href="/product/{{this.id}}/edit"> {{this.name}}</a>
-    -
-    {{!-- {{this.description}} 
-    {{this.price}} --}}
-    {{this.stock}} unidades
+   <a href="/product/{{this.id}}/details"> {{this.name}}</a>
+    <br>
+    Precio:    {{this.price}} 
+  
+    {{!-- imagen --}}
     </li>
   {{/each}}
   </ul>

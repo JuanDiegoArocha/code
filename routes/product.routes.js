@@ -48,7 +48,7 @@ const router = express.Router();
 //GET "/list" -> queremos ver la lista de todos los productos de la base de datos
 router.get("/list", (req, res, next) => {
     Product.find()
-      .select({ name: 1, stock: 1 })
+      .select({ name: 1, price: 1, }) // faltará la imagen aqui
       .then((allProducts) => {
         //console.log(allProducts);
   
@@ -61,21 +61,6 @@ router.get("/list", (req, res, next) => {
       });
   });
 
- //! Ruta borrar productos de la lista
-
-//  router.post("/:productId/delete", (req, res, next) => {
-//    // console.log(req.params);
-//     Product.findByIdAndDelete(req.params.productId)
-//       .then(() => {
-//         res.redirect("/product/list");
-//       })
-//       .catch((err) => {
-//         next(err);
-//       });
-//   });
-
-
-
 
  //! Ruta para editar productos en la base de datos
  //GET "/:productId/edit" -> renderizar un formulario de edit (con los valores actuales del producto)
@@ -85,7 +70,7 @@ router.get("/list", (req, res, next) => {
     Product.findById(req.params.productId)
     //.populate("name")
       .then((productDetails) => {
-          console.log(productDetails)
+          //console.log(productDetails)
          
         res.render("product/edit.hbs", {
           productDetails, 
@@ -99,34 +84,64 @@ router.get("/list", (req, res, next) => {
 
 
 
-//! Ruta para poder editar los datos de un producto
-//POST "/:productId/edit" => editar los datos del producto y actualizarlo en la BD
-//queremos que al darle a actualizar en /edit se edit la info
+// //! Ruta para poder editar los datos de un producto
+ //POST "/:productId/edit" => editar los datos del producto y actualizarlo en la BD
+
 router.post("/:productId/edit", async (req, res, next) => {
-    try {
-     // console.log(req.params);
-    //   console.log(req.body);
-  
-      const { name, description, price, stock } = req.body; // esto es para restructurar lo de abajo ( limpiar codigo)
-      const response = await Product.findByIdAndUpdate(
+    try{
+     const{ name, description, price, stock } = req.body;
+     const result = await Product.findByIdAndUpdate(
         req.params.productId,
-        {  
-          name,
-          description,
-          price,
-          stock,
-        },
-        { new: true }
-      );
-  
-     
-      res.redirect("/product/list");
-    } catch (error) {
-      next(error);
+        {
+   
+       name,
+       description,
+       price,
+      stock,
+     },
+     {new: true}
+     )
+   
+     //! redirect a list
+     res.redirect("/product/list")
+   
+   
+    } catch(error){
+       next(error);
     }
+   
+    });
+   
+
+//! Ruta para ver los detalles de los productos
+//GET "/list" -> queremos ver la lista de todos los productos de la base de datos
+router.get("/:productId/details", (req, res, next) => {
+    Product.findById(req.params.productId)
+    // .select({ name: 1, stock: 1 })
+      .then((productDetails) => {
+        //console.log(allProducts);
+  
+        res.render("product/details.hbs", {
+          productDetails, 
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
   });
-     
-      
+
+       //! Ruta borrar productos de la lista
+
+//   router.post("/:productId/delete", (req, res, next) => {
+//     // console.log(req.params);
+//      Product.findByIdAndDelete(req.params.productId)
+//        .then(() => {
+//          res.redirect("/product/list");
+//        })
+//        .catch((err) => {
+//          next(err);
+//        });
+//    });
  
 
 
