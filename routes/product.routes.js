@@ -129,7 +129,7 @@ router.get("/:productId/details", (req, res, next) => {
         next(error);
       });
   });
-<<<<<<< HEAD
+
 
        //! Ruta borrar productos de la lista
 
@@ -146,9 +146,9 @@ router.get("/:productId/details", (req, res, next) => {
  
 
 
-=======
+
      
       
->>>>>>> 5d036cb510ae23fa533db59d141cdb1a025210b8
+
 
 module.exports = router;
