@@ -96,6 +96,35 @@ router.get("/list", (req, res, next) => {
         next(err);
       });
       });
+
+
+
+//! Ruta para poder editar los datos de un producto
+//POST "/:productId/edit" => editar los datos del producto y actualizarlo en la BD
+//queremos que al darle a actualizar en /edit se edit la info
+router.post("/:productId/edit", async (req, res, next) => {
+    try {
+     // console.log(req.params);
+    //   console.log(req.body);
+  
+      const { name, description, price, stock } = req.body; // esto es para restructurar lo de abajo ( limpiar codigo)
+      const response = await Product.findByIdAndUpdate(
+        req.params.productId,
+        {  
+          name,
+          description,
+          price,
+          stock,
+        },
+        { new: true }
+      );
+  
+     
+      res.redirect("/product/list");
+    } catch (error) {
+      next(error);
+    }
+  });
      
       
  
