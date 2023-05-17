@@ -1,7 +1,7 @@
 const express = require('express');
 const Product = require('../models/Product.model');
 const router = express.Router();
-
+const uploader = require("../middleware/uploader.js")
 
 
 //! Ruta para agregar productos en la base de datos
@@ -13,16 +13,23 @@ const router = express.Router();
 
 
  //POST "/create" => Añadir más stock de un producto que ya existe
- router.post("/create", async (req, res, next) => {
+ router.post("/create", uploader.single("image") ,async (req, res, next) => {
  try{
-  const{ name, description, price, stock } = req.body;
-  
+  //const{ name, description, price, stock, } = req.body;
+  console.log(req.body)
+  console.log(req.file)
+
+  if (req.file === undefined){
+    next("poner imagen")
+    return
+  }
   //! create product
    await Product.create({
-    name,
-     description,
-     price,
-     stock
+    name: req.body.name,
+     description: req.body.description,
+     price: req.body.price,
+     stock: req.body.stock,
+     image: req.file.path
    })
 
   //!actualizar product?
@@ -65,7 +72,7 @@ router.get("/list", (req, res, next) => {
  //! Ruta para editar productos en la base de datos
  //GET "/:productId/edit" -> renderizar un formulario de edit (con los valores actuales del producto)
 
- router.get("/:productId/edit", (req, res, next) => {
+ router.get("/:productId/edit",(req, res, next) => {
     //queremos buscar los detalles del producto por su id y los pasamos a la vista
     Product.findById(req.params.productId)
     //.populate("name")
@@ -87,17 +94,18 @@ router.get("/list", (req, res, next) => {
 // //! Ruta para poder editar los datos de un producto
  //POST "/:productId/edit" => editar los datos del producto y actualizarlo en la BD
 
-router.post("/:productId/edit", async (req, res, next) => {
+router.post("/:productId/edit", uploader.single("image") , async (req, res, next) => {
     try{
-     const{ name, description, price, stock } = req.body;
+     //const{ name, description, price, stock, image } = req.body;
      const result = await Product.findByIdAndUpdate(
         req.params.productId,
         {
    
-       name,
-       description,
-       price,
-      stock,
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          stock: req.body.stock,
+          image: req.file.path,
      },
      {new: true}
      )

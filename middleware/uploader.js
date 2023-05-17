@@ -1,4 +1,4 @@
-/*
+
 // config/cloudinary.config.js
 
 const cloudinary = require('cloudinary').v2;
@@ -17,11 +17,10 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     allowed_formats: ['jpg', 'png'],
-    folder: '' //! The name of the folder in cloudinary
+    folder: 'product-images' //! The name of the folder in cloudinary
     // resource_type: 'raw' => this is in case you want to upload other type of files, not just images
   }
 });
 
 //                     storage: storage
 module.exports = multer({ storage });
-*/
