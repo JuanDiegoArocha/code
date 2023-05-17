@@ -109,14 +109,14 @@ router.get("/:userId/cart", isLoggedIn, async (req, res, next) => {
         const userId = req.session.user._id; 
 
         const userCart = await User.findById(userId)
-        .populate({
-            path: "cart",
-            populate: {
-                path: "item",
-                model: "Product"
-            }
-        })
-        
+        // .populate({
+        //     path: "cart",
+        //     populate: {
+        //         path: "item",
+        //         model: "Product"
+        //     }
+        // })
+        .populate("cart.item")
         .select("cart")
         console.log(userCart)
      
@@ -154,7 +154,43 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 })
 
 
-// POST route "/:productId/remove" => remove from cart 
+ // POST route "/:productId/remove" => remove from cart
+ router.post("/:productId/remove", async (req, res, next) => {
+     try {
+         const productId = req.params.productId;
+         const userId = req.session.user._id; 
+         // Cuando tengamos el carrito, vamos a hacer un nuevo array ra luego remover un producto de ese nuevo array y luego actualizar el rrito con ese nuevo array.
+         
+         const user = await User.findById(userId) // busca al usuario por su id
+         const updatedCart = user.cart.filter((item) => item.item.toString()!== productId) // filtra el carrito del usuario para eliminar el producto con el id correspondiente
+         user.cart = updatedCart // asigna el nuevo carrito actualizado al usuario
+         await user.save()
+
+         res.redirect(`/user/${userId}/cart`)
+
+
+     } catch (error) {
+      next(error)
+     }
+ })
+
+
+// POST route "/:cartId/remove-cart" => remove from cart
+router.post("/:cartId/remove-cart", isLoggedIn, async (req, res, next) => {
+    try {
+        const cartId = req.params.cartId; // obtiene el id del carrito
+        const userId = req.session.user._id; // obtiene el id del usuario
+
+        const user = await User.findById(userId) // busca al usuario por su id
+        user.cart = [] // vacia el contenido del carrito asignadole un array vacio
+        await user.save() // guarda los cambios en la base de datos
+
+        res.redirect(`/user/${userId}/cart`)
+
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 // GET route "/:productId/pay" => go to payment page
@@ -164,9 +200,9 @@ router.get("/:productId/pay", isLoggedIn, async (req, res, next) => {
         const userId = req.session.user._id;
 
         // Aqui se actualiza es estado del producto
-        await Product.findByIdAndUpdate(productId, { purchased: true })
+        await Product.findByIdAndUpdate(productId, { purchased: true }) // actualiza el estado del producto a "purchased"  en la base de datos
 
-        res.render("user/purchase-seccess.hbs", { productId })
+        res.render("user/purchase-success.hbs", { productId })
 
     } catch (error) {
         next(error)

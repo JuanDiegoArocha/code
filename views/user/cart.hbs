@@ -2,8 +2,8 @@
 
     <h2>Cart</h2>
 
+    {{#if this.userCart}}
     
-
     <ul>
         {{#each this.userCart.cart}}
         <li>
@@ -11,16 +11,26 @@
         <p>Quantity:{{this.quantity}}</p>
         <p>Price:{{this.item.price}} €</p>
 
-        <button>Remove</button>
+        <div>
 
+        <form action="/user/{{this.userCart._id}}/remove-cart" method="post">
+        <input type="hidden" name="productId" value="{{this.item._id}}" />
+            <button type="submit">Vaciar el carrito</button>
+        </form>
+
+        </div>
         </li>
         {{/each}}
     </ul>
 
 
-    <p>Total Price: ${{calculateTotalPrice this.userCart.cart}}</p>
-    <a href="/user/{{this.userCart._id}}/pay">Pagar</a>
 
+    <p>Total Price: ${{calculateTotalPrice this.userCart.cart}}</p>
+
+
+    <a href="/user/{{this.userCart._id}}/pay">Pagar</a>
+    
+    {{/if}}
 </div>
 
 {{!-- Imprime el contenido del carrito --}}
