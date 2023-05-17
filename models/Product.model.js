@@ -21,6 +21,10 @@ const productSchema = new Schema(
     type: Number,
     required: true,
   },
+  purchased: {
+    type: Boolean,
+    default: false,
+  },
   coverImage: String //! a traves de cloudinary porner las URL
 },
   {

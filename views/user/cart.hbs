@@ -13,13 +13,13 @@
 
         <button>Remove</button>
 
-
         </li>
         {{/each}}
     </ul>
 
 
-   <p>Total Price: ${{calculateTotalPrice this.userCart.cart}}</p>
+    <p>Total Price: ${{calculateTotalPrice this.userCart.cart}}</p>
+    <a href="/user/{{this.userCart._id}}/pay">Pagar</a>
 
 </div>
 

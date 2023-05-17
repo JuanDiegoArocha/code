@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const User= require("../models/User.model")
 const Product= require("../models/Product.model")
+const Purchase= require("../models/Purchase.model")
 
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 
@@ -154,6 +155,23 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 
 
 // POST route "/:productId/remove" => remove from cart 
+
+
+// GET route "/:productId/pay" => go to payment page
+router.get("/:productId/pay", isLoggedIn, async (req, res, next) => {
+    try {
+        const productId = req.params.productId;
+        const userId = req.session.user._id;
+
+        // Aqui se actualiza es estado del producto
+        await Product.findByIdAndUpdate(productId, { purchased: true })
+
+        res.render("user/purchase-seccess.hbs", { productId })
+
+    } catch (error) {
+        next(error)
+    }
+})
 
   
 
