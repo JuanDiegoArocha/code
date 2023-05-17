@@ -1,0 +1,20 @@
+<div>
+
+<h2>Productos disponibles</h2>
+<h3>Haga click en el nombre del producto para editar.</h3>
+
+
+<ul>
+  {{#each this.allProducts}}
+  <li>
+    Producto:
+   <a href="/product/{{this.id}}/details"> {{this.name}}</a>
+    <br>
+    Precio: {{this.price}} €
+  
+    {{!-- imagen --}}
+    </li>
+  {{/each}}
+  </ul>
+
+</div>

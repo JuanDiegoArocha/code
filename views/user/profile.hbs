@@ -1,0 +1,21 @@
+<div>
+
+    <h2>User profile</h2>
+    <div>
+        <p><b> Name:</b>{{firstName}}</p>
+        <p><b>Last Name:</b>{{lastName}}</p>
+        <p><b>Email:</b>{{email}}</p>
+        <p><b>Address:</b>{{address}}</p>
+        <p><b>City:</b>{{city}}</p>
+        <p><b>Postal Code:</b>{{postalCode}}</p>
+        <p><b>Birthdate:</b>{{dateOfBirth}}</p>
+    </div>
+    <form action="/auth/logout" method="get">
+        <button>Logout</button>
+    </form>
+    <form action="/user/edit-profile" method="get">
+    <button>Edit Profile</button>
+    </form>
+    
+
+</div>

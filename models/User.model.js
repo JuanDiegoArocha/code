@@ -40,7 +40,14 @@ const userSchema = new Schema(
     dateOfBirth: {
       type: Date,
       required: true
-    }
+    },
+    cart: {
+type: [{
+quantity: {type: Number},
+item: {type: Schema.Types.ObjectId,
+ref: "Product"}
+}]
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

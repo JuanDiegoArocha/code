@@ -11,11 +11,40 @@
 
    <body>
 
-      <nav>
+      
+       <nav>
          <a href="/">Home</a>
+         <a href="/product/list">Lista de productos</a>
+         {{#if isUserActive}}
+         <a href="/user/profile">Profile</a>
+         <a href="/user/:userId/cart">Cart</a>
+         <a href="/user/pay">Pay</a>
+         <a href="/auth/logout">Logout</a>
+         {{else}}
          <a href="/auth/signup">Sign up</a>
          <a href="/auth/login">Log in</a>
-      </nav>
+         <a href="/product/create" style="color: red" >Crear producto</a>
+         {{!-- <a href="/product/edit" style="color: red">Editar un producto</a>  --}}
+
+         <a href="/product/list" style="color: red">Lista de productos</a>
+
+
+         {{/if}}
+
+         {{!-- <a href="/product/details" style="color: red">Detalles del producto</a> --}} 
+      
+
+
+
+         {{!-- <a href="/product/details" style="color: red">Detalles del producto</a> --}}
+       
+
+
+
+
+        
+
+      </nav> 
 
       {{{body}}}
 
