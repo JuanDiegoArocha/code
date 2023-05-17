@@ -3,7 +3,7 @@
 <h3>Aqui para que el ADMIN añada productos en stock o 
     añada nuevos productos</h3>
 
-<form action="/product/create" method="post">
+<form action="/product/create" method="post" enctype="multipart/form-data">
 
 <label for="name">Nombre</label>
 <input type="text" name="name">
@@ -25,8 +25,8 @@
 
 <br>
 
-<label for="coverImage">Imagen</label>
-<input type="text" name="coverImage">
+<label for="image">Imagen</label>
+<input type="file" name="image">
 
 <br>
 

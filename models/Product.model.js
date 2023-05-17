@@ -21,7 +21,7 @@ const productSchema = new Schema(
     type: Number,
     required: true,
   },
-  coverImage: String //! a traves de cloudinary porner las URL
+  image: String //! a traves de cloudinary porner las URL
 },
   {
   //esto es para añadir propiedades : `createdAt` y `updateAt`

@@ -13,7 +13,7 @@
 <br> --}}
 
 
-<form action="/product/{{this.productDetails._id}}/edit" method="post">
+<form action="/product/{{this.productDetails._id}}/edit" method="post" enctype="multipart/form-data">
 
 <label for="name">Modificar nombre</label>
 <input type="text" name="name" value="{{this.productDetails.name}}">
@@ -26,6 +26,9 @@
 <br>
 <label for="stock">Modificar stock</label>
 <input type="number" name="stock" value="{{this.productDetails.stock}}">
+
+<label for="image">Nueva imagen</label>
+<input type="file" name="image" value="{{this.productDetails.image}}">
 
 
 <button type="submit">Editar</button>
