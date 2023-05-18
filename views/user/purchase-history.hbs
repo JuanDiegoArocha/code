@@ -1,0 +1,14 @@
+<div>
+    <h2>Historial de Compras</h2>
+    <ul>
+        {{#each this.userCart.cart}}
+        <li>
+        <p>Product:{{this.item.name}}</p>
+        <p>Quantity:{{this.quantity}}</p>
+        <p>Price:{{this.item.price}} €</p>
+    
+
+        </li>
+        {{/each}}
+    </ul>
+</div>

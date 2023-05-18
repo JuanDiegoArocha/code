@@ -45,9 +45,13 @@ const userSchema = new Schema(
 type: [{
 quantity: {type: Number},
 item: {type: Schema.Types.ObjectId,
-ref: "Product"}
+ref: "Product"},
 }]
     },
+    purchasedItems: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Product'
+    }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

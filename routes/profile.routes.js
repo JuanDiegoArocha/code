@@ -109,14 +109,14 @@ router.get("/:userId/cart", isLoggedIn, async (req, res, next) => {
         const userId = req.session.user._id; 
 
         const userCart = await User.findById(userId)
-        // .populate({
-        //     path: "cart",
-        //     populate: {
-        //         path: "item",
-        //         model: "Product"
-        //     }
-        // })
-        .populate("cart.item")
+         .populate({
+             path: "cart",
+             populate: {
+                 path: "item",
+                 model: "Product"
+             }
+         })
+        // .populate("cart.item")
         .select("cart")
         console.log(userCart)
      
@@ -155,7 +155,7 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 
 
  // POST route "/:productId/remove" => remove from cart
- router.post("/:productId/remove", async (req, res, next) => {
+ router.post("/:productId/remove", isLoggedIn, async (req, res, next) => {
      try {
          const productId = req.params.productId;
          const userId = req.session.user._id; 
@@ -176,9 +176,9 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 
 
 // POST route "/:cartId/remove-cart" => remove from cart
-router.post("/:cartId/remove-cart", isLoggedIn, async (req, res, next) => {
+router.post("/remove-cart", isLoggedIn, async (req, res, next) => {
     try {
-        const cartId = req.params.cartId; // obtiene el id del carrito
+        // const cartId = req.params.cartId; // obtiene el id del carrito
         const userId = req.session.user._id; // obtiene el id del usuario
 
         const user = await User.findById(userId) // busca al usuario por su id
@@ -193,21 +193,85 @@ router.post("/:cartId/remove-cart", isLoggedIn, async (req, res, next) => {
 })
 
 
+// // GET route "/:productId/pay" => go to payment page
+// router.get("/:productId/pay", isLoggedIn, async (req, res, next) => {
+//     try {
+//         const productId = req.params.productId;
+//         const userId = req.session.user._id;
+
+//         // Actualizar el estado del producto a "purchased" en la base de datos
+//         await Product.findByIdAndUpdate(productId, { purchased: true });
+
+//         // Eliminar el producto del carrito del usuario
+//         const user = await User.findById(userId);
+//         const updatedCart = user.cart.filter((item) => item.item.toString() !== productId);
+//         user.cart = updatedCart;
+//         await user.save();
+
+//         // Obtener el carrito actualizado del usuario con los productos comprados
+//         const userCart = await User.findById(userId)
+//             .populate({
+//                 path: "cart",
+//                 populate: {
+//                     path: "item",
+//                     model: "Product"
+//                 }
+//             });
+
+//         res.render("user/purchase-success.hbs", { userCart });
+
+//     } catch (error) {
+//         next(error);
+//     }
+// });
+
 // GET route "/:productId/pay" => go to payment page
 router.get("/:productId/pay", isLoggedIn, async (req, res, next) => {
     try {
-        const productId = req.params.productId;
-        const userId = req.session.user._id;
-
-        // Aqui se actualiza es estado del producto
-        await Product.findByIdAndUpdate(productId, { purchased: true }) // actualiza el estado del producto a "purchased"  en la base de datos
-
-        res.render("user/purchase-success.hbs", { productId })
-
+      const productId = req.params.productId;
+      const userId = req.session.user._id;
+  
+      // Obtener el usuario actual
+      const user = await User.findById(userId);
+  
+      // Actualizar el estado del producto a "purchased" en la base de datos
+      await Product.findByIdAndUpdate(productId, { purchased: true });
+  
+      // Agregar el producto al historial de compras del usuario
+      user.purchasedItems.push(productId);
+      await user.save();
+  
+      // Eliminar el producto del carrito del usuario
+      user.cart = user.cart.filter((item) => item.item.toString() !== productId);
+      await user.save();
+  
+      // Redirigir al usuario a la página de historial de compras
+      res.render("user/purchase-success.hbs");
     } catch (error) {
-        next(error)
+      next(error);
     }
-})
+  });
+
+// GET route "/purchase-history" => view purchase history
+router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
+    try {
+        const userId = req.session.user._id;
+        const user = await User.findById(userId)
+            .populate("purchasedItems");
+        
+        res.render("user/purchase-history.hbs", { userCart: user });
+    } catch (error) {
+        next(error);
+    }
+});
+
+  
+
+  
+  
+  
+  
+
 
   
 
