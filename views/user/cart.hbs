@@ -1,15 +1,15 @@
-<div>
+<div class="carrito">
 
-    <h2>Cart</h2>
+    <h2 class="h2-cart">Cart</h2>
 
-   
-    
+   <div class="profile"> 
+
     <ul>
         {{#each this.userCart.cart}}
         <li>
-        <p>Product:{{this.item.name}}</p>
-        <p>Quantity:{{this.quantity}}</p>
-        <p>Price:{{this.item.price}} €</p>
+        <p>Product: {{this.item.name}}</p>
+        <p>Quantity: {{this.quantity}}</p>
+        <p>Price: {{this.item.price}} €</p>
     
 
         </li>
@@ -18,18 +18,23 @@
 
 
 
-    <p>Total Price: ${{calculateTotalPrice this.userCart.cart}}</p>
+    <p>Total Price: {{calculateTotalPrice this.userCart.cart}} €</p>
 
         <div>
 
         <form action="/user/remove-cart" method="post">
         <input type="hidden" name="userId" value="{{this.userCart._id}}" />
-            <button type="submit">Remove cart</button>
+            <button  class="btn-remove" type="submit">Remove cart</button>
         </form>
 
         </div>
 
-    <a href="/user/{{this.userCart._id}}/pay">Pay</a>
+    <button class="btn-pay">
+     <a class="paylink" href="/user/{{this.userCart._id}}/pay">Pay</a>
+    </button>
+
+   </div>
+    
     
     {{!-- <h2>Historial de Compras</h2>
 

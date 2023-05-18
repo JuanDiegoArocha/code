@@ -1,6 +1,6 @@
-<div>
+<div class="form-create">
 
-    <h1>Log in</h1>
+    <h1 class="h1-login">Log in</h1>
 
     <form action="/auth/login" method="post">
     
@@ -14,7 +14,7 @@
         <input type="password" name="password">
     </div>
 
-    <button>Access</button>
+    <button class="btn-access">Access</button>
 
     {{#if this.errorMessage}}
     <p style="color: red;">{{this.errorMessage}}</p>

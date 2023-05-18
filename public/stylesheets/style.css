@@ -1,17 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@300&family=Montserrat:wght@300&display=swap');
+
+*{
+  font-family: "Montserrat";
+  margin: 0;
+}
+.home {
+  background-image: url(../images/Fondos/blanco.jpg);
+  background-position: center;
+  background-size:auto;
+  width: 100%;
+  height: 100%;
+  margin: 0; 
+}
+
+#title {
+  padding-top: 12%;
+  text-align: center;
+  font-size: 80px;
+}
+
+#subtitle {
+  text-align: center;
+  font-size: 40px;
+  padding-top: 10%;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0%;
+  background-color: lightgray;
 }
 
-a {
-  color: #00b7ff;
+.navbar-brand {
+  color: whitesmoke;
+  text-decoration: none;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
-h1 {
-  color: 15px;
+.list {
+  background-image: url(../images/Fondos/gris.jpg);
+  background-color: lightgray;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+
 }
 
-.home{
-  background-image: url('../images/Fondos/blanco.jpg');
+.list-title {
+  font-size: 50px;
+  padding-top: 10%;
+  text-align: center;
+  color: rgb(211, 202, 202);
+  padding-bottom: 2%;
 }
+/* 
+#item-card {
+  display: flex;
+  flex-wrap: nowrap;
+
+} */
+
+
+/* #card {
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  width: 200px;
+  height: 300px;
+  border-radius: 10%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+} */
+
+.card-img-top {
+  width: 135px;
+  height: 150px;
+
+}
+
+.create-product {
+  border-color: transparent;
+  font-size: 30px;
+  padding-left: 5%;
+  border-bottom: none;
+  background-color: transparent;
+}
+
+.create-link, .product-link {
+  text-decoration: none;
+  color: rgb(211, 202, 202);
+}
+
+.product-link {
+  font-weight: 700;
+  color: rgb(66, 66, 66);
+}
+
+.form-create {
+padding-top: 20%;
+padding-left: 40%;
+background-image: url(../images/Fondos/gris.jpg);
+background-size: auto;
+background-position: center;
+width: 100%;
+height: 100%;
+margin: 0;
+color: white;
+}
+
+
+
+.h3-create {
+  padding-bottom: 5%;
+}
+
+.h2-profile {
+  padding-top: 12%;
+  font-size: 50px;
+  text-align: center;
+  color: white;
+  padding-bottom: 2%;
+}
+
+.profile {
+  padding-left: 5%;
+  padding-top: 5%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  padding-right: 5%;
+}
+
+.background-profile {
+  background-image: url(../images/Fondos/gris.jpg);
+  background-size: auto;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.btn-logout, .btn-editprofile {
+  border-color: transparent;
+  background-color: transparent;
+  padding-left: 47%;
+  color: white;
+  font-size: 30px;
+  padding-top: 1%;
+}
+
+.h2-details {
+  padding-top: 12%;
+  font-size: 50px;
+  text-align: center;
+  padding-bottom: 2%;
+}
+
+.details {
+  background-image: url(../images/Fondos/blanco.jpg);
+  background-size: auto;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.item-detail {
+  padding-left: 5%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 5%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.btn-editimage, .btn-add {
+  border-color: transparent;
+  background-color: transparent;
+  font-size: 30px;
+}
+
+.item-image {
+  text-decoration: none;
+  color: black;
+}
+
+.carrito {
+  background-image: url(../images/Fondos/gris.jpg);
+  background-size: auto;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.h2-cart {
+  padding-top: 8%;
+  font-size: 50px;
+  text-align: center;
+  padding-bottom: 2%;
+  color: white;
+}
+
+.btn-pay, .btn-remove {
+  border-color: transparent;
+  background-color: transparent;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  padding-top: 1%;
+}
+
+.paylink {
+  text-decoration: none;
+  color: white;
+}
+
+.h2-h2 {
+  padding-top: 23%;
+  font-size: 50px;
+  text-align: center;
+  padding-bottom: 2%;
+  color: white;
+}
+
+.btn-gohome {
+  border-color: transparent;
+  background-color: transparent;
+  padding-left: 45%;
+  color: white;
+  font-size: 30px;
+  padding-top: 1%;
+}
+
+.gohome-link {
+  text-decoration: none;
+  color: white;
+}
+
+.h1-login {
+padding-bottom: 5%;
+padding-left: 5%;
+}
+
+.btn-access {
+  border-color: transparent;
+  background-color: transparent;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  padding-top: 1%;
+  padding-left: 6%;
+
+}
+
 

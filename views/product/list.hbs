@@ -1,30 +1,43 @@
-<div>
+<div class="list">
 
-<h2>Available products</h2>
-
-
-
-<ul>
-  {{#each this.allProducts}}
-  <li>
-    <p>  Product:
-   <a href="/product/{{this.id}}/details"> {{this.name}}</a></p>
-
-    <br>
-    <p>Price: {{this.price}} €</p>
-    
-    <br>
-    <p><img src="{{this.image}}" alt="imagen" width="150"></p>
-   
-  
-
-    {{!-- imagen --}}
-    </li>
-  {{/each}}
-  </ul>
+  <h2 class="list-title">Available products</h2>
 
   {{#if isAdmin}}
-     <a href="/product/create">Create product</a>
+  <button class="create-product">
+    <a  class="create-link" href="/product/create">Create product</a>
+
+  </button>
   {{/if}}
+
+    <div class="container-fluid">
+
+
+    <div class="row row-cols-md-4 gx-5 gy-5">
+
+      {{#each this.allProducts}}
+    <div class="col d-flex justify-content-center" >
+        <div class="card h-100 w-75 text-center border-secondary" >
+
+          <p><img src="{{this.image}}" class="card-img-top" alt="imagen" /></p>
+
+          <div class="card-body">
+
+          <p class="card-title" > Product:<a class="product-link" href="/product/{{this.id}}/details">
+              {{this.name}}</a></p>
+
+          <p class="card-text">Price: {{this.price}} €</p>
+
+          </div>
+
+        </div>
+  </div>
+      {{/each}}
+    
+
+
+    </div>
+
+    </div>
+
 
 </div>

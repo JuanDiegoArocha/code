@@ -1,10 +1,9 @@
-<div>
+<div class="details">
 
-<h2>Product details</h2>
+<h2 class="h2-details">Product details</h2>
 
 
-{{!-- {{this.productDetails}}  --}}
-
+<div class="item-detail">
  <p>{{this.productDetails.name}}</p>
 <p>Price: {{this.productDetails.price}}€</p>
 
@@ -19,14 +18,19 @@
 </form>
 
 <form action="/user/{{this.productDetails._id}}/cart" method="post">
-<button type="submit">Add to cart</button>
+<button class="btn-add" type="submit">Add to cart</button>
 
 
 </form>
 
   {{#if isAdmin}}
-  <a href="/product/{{this.productDetails._id}}/edit">Edit</a>
+  <button class="btn-editimage">
+  <a class="item-image" href="/product/{{this.productDetails._id}}/edit">Edit</a>
+
+  </button>
   {{/if}}
+
+</div>
 
 
 

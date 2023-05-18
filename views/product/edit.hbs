@@ -1,6 +1,6 @@
-<div>
+<div class="form-create">
 
-<h2>Edit</h2>
+<h2 class="h3-create">Edit</h2>
 
 
 {{!-- {{this.productDetails}} --}}
@@ -14,7 +14,7 @@
 <br> --}}
 
 
-<form action="/product/{{this.productDetails._id}}/edit" method="post" enctype="multipart/form-data">
+<form class="create-form" action="/product/{{this.productDetails._id}}/edit" method="post" enctype="multipart/form-data">
 
 <label for="name">New name</label>
 <input type="text" name="name" value="{{this.productDetails.name}}">
@@ -27,6 +27,8 @@
 <br>
 <label for="stock">New stock</label>
 <input type="number" name="stock" value="{{this.productDetails.stock}}">
+
+<br>
 
 <label for="image">New image</label>
 <input type="file" name="image" value="{{this.productDetails.image}}">
