@@ -12,7 +12,8 @@ const isAdmin = require('../middleware/isAdmin');
 
 // private route
 
-router.get('/profile', isLoggedIn, (req, res, next) => {
+router.get('/profile', isLoggedIn, isAdmin, (req, res, next) => {
+
     
     User.findById(req.session.user._id)
     
@@ -278,7 +279,8 @@ router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
 // //! ruta para el admin
 
  router.get("/admin",isLoggedIn, isAdmin, (req, res ,next) => {
-     res.render("admin/admin-dashboard.hbs")
+     res.render("user/admin-dashboard.hbs")
+     console.log(req.session.user)
  })
  
 //  router.get("/admin/list", isLoggedIn, isAdmin, (req,res,next) => {
