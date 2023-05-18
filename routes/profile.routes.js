@@ -160,7 +160,7 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 })
 
 
-<<<<<<< HEAD
+
  // POST route "/:productId/remove" => remove from cart
  router.post("/:productId/remove", isLoggedIn, async (req, res, next) => {
      try {
@@ -174,7 +174,7 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
          await user.save()
 
          res.redirect(`/user/${userId}/cart`)
-=======
+
 // // POST route "/:productId/remove" => remove from cart
 // route.post("/:productId/remove", async (req, res, next) => {
 //     try {
@@ -193,7 +193,7 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 //     }
 // }) 
 
->>>>>>> b0343f9621c6c1baa6a0eb79ed6b79cf82f8a416
+
 
 
      } catch (error) {
@@ -219,7 +219,7 @@ router.post("/remove-cart", isLoggedIn, async (req, res, next) => {
     }
 })
 
-<<<<<<< HEAD
+
 
 // // GET route "/:productId/pay" => go to payment page
 // router.get("/:productId/pay", isLoggedIn, async (req, res, next) => {
@@ -313,8 +313,8 @@ router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
 //     res.render("/product/list.hbs")
 //  })
 
-=======
->>>>>>> b0343f9621c6c1baa6a0eb79ed6b79cf82f8a416
+
+
 
 
 module.exports = router;
