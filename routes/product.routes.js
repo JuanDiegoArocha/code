@@ -4,6 +4,7 @@ const router = express.Router();
 const uploader = require("../middleware/uploader.js");
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 const isAdmin = require('../middleware/isAdmin');
+const isAdminOrUser = require('../middleware/isAdminOrUser.middleware');
 
 
 //! Ruta para agregar productos en la base de datos
@@ -55,7 +56,7 @@ const isAdmin = require('../middleware/isAdmin');
 
 //! Ruta de la lista de produtcos
 //GET "/list" -> queremos ver la lista de todos los productos de la base de datos
-router.get("/list", (req, res, next) => {
+router.get("/list", isAdminOrUser, (req, res, next) => {
     Product.find()
       .select({ name: 1, price: 1, }) // faltará la imagen aqui
       .then((allProducts) => {
@@ -63,6 +64,7 @@ router.get("/list", (req, res, next) => {
   
         res.render("product/list.hbs", {
           allProducts, 
+          isAdmin: req.session.user.role === "admin"
         });
       })
       .catch((error) => {
@@ -74,7 +76,7 @@ router.get("/list", (req, res, next) => {
  //! Ruta para editar productos en la base de datos
  //GET "/:productId/edit" -> renderizar un formulario de edit (con los valores actuales del producto)
 
- router.get("/:productId/edit",isLoggedIn,isAdmin,(req, res, next) => {
+ router.get("/:productId/edit",isLoggedIn, isAdmin,(req, res, next) => {
     //queremos buscar los detalles del producto por su id y los pasamos a la vista
     Product.findById(req.params.productId)
     //.populate("name")
@@ -125,7 +127,7 @@ router.post("/:productId/edit", isLoggedIn, isAdmin ,uploader.single("image") , 
 
 //! Ruta para ver los detalles de los productos
 //GET "/list" -> queremos ver la lista de todos los productos de la base de datos
-router.get("/:productId/details", (req, res, next) => {
+router.get("/:productId/details", isAdminOrUser, (req, res, next) => {
     Product.findById(req.params.productId)
     // .select({ name: 1, stock: 1 })
       .then((productDetails) => {
@@ -133,6 +135,7 @@ router.get("/:productId/details", (req, res, next) => {
   
         res.render("product/details.hbs", {
           productDetails, 
+          isAdmin: req.session.user.role === "admin"
         });
       })
       .catch((error) => {

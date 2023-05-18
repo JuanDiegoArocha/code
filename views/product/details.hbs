@@ -24,6 +24,10 @@
 
 </form>
 
+  {{#if isAdmin}}
+  <a href="/product/{{this.productDetails._id}}/edit">Editar un producto</a>
+  {{/if}}
+
 
 
 </div>

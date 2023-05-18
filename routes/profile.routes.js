@@ -302,12 +302,12 @@ router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
 
 
   
-// //! ruta para el admin
+// // //! ruta para el admin
 
- router.get("/admin",isLoggedIn, isAdmin, (req, res ,next) => {
-     res.render("user/admin-dashboard.hbs")
-     console.log(req.session.user)
- })
+//  router.get("/admin",isLoggedIn, isAdmin, (req, res ,next) => {
+//      res.render("user/admin-dashboard.hbs")
+//      console.log(req.session.user)
+//  })
  
 //  router.get("/admin/list", isLoggedIn, isAdmin, (req,res,next) => {
 //     res.render("/product/list.hbs")

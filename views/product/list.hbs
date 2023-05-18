@@ -12,9 +12,14 @@
     <br>
     Precio: {{this.price}} €
   
+
     {{!-- imagen --}}
     </li>
   {{/each}}
   </ul>
+
+  {{#if isAdmin}}
+     <a href="/product/create">Crear producto</a>
+  {{/if}}
 
 </div>
