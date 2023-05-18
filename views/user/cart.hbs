@@ -24,12 +24,12 @@
 
         <form action="/user/remove-cart" method="post">
         <input type="hidden" name="userId" value="{{this.userCart._id}}" />
-            <button type="submit">Vaciar el carrito</button>
+            <button type="submit">Remove cart</button>
         </form>
 
         </div>
 
-    <a href="/user/{{this.userCart._id}}/pay">Pagar</a>
+    <a href="/user/{{this.userCart._id}}/pay">Pay</a>
     
     {{!-- <h2>Historial de Compras</h2>
 

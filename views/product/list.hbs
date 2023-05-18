@@ -1,16 +1,21 @@
 <div>
 
-<h2>Productos disponibles</h2>
-<h3>Haga click en el nombre del producto para editar.</h3>
+<h2>Available products</h2>
+
 
 
 <ul>
   {{#each this.allProducts}}
   <li>
-    Producto:
-   <a href="/product/{{this.id}}/details"> {{this.name}}</a>
+    <p>  Product:
+   <a href="/product/{{this.id}}/details"> {{this.name}}</a></p>
+
     <br>
-    Precio: {{this.price}} €
+    <p>Price: {{this.price}} €</p>
+    
+    <br>
+    <p><img src="{{this.image}}" alt="imagen" width="150"></p>
+   
   
 
     {{!-- imagen --}}
@@ -19,7 +24,7 @@
   </ul>
 
   {{#if isAdmin}}
-     <a href="/product/create">Crear producto</a>
+     <a href="/product/create">Create product</a>
   {{/if}}
 
 </div>

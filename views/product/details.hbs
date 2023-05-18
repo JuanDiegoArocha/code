@@ -1,16 +1,16 @@
 <div>
 
-<h2>Detalles del producto</h2>
+<h2>Product details</h2>
 
 
 {{!-- {{this.productDetails}}  --}}
 
  <p>{{this.productDetails.name}}</p>
-<p>{{this.productDetails.price}}€</p>
+<p>Price: {{this.productDetails.price}}€</p>
 
 <p>{{this.productDetails.description}}</p>
 
-<p>{{this.productDetails.stock}} unidades disponibles </p>
+<p>{{this.productDetails.stock}} units available </p>
 
 <img src="{{this.productDetails.image}}" alt="imagen" width="300">
 
@@ -19,13 +19,13 @@
 </form>
 
 <form action="/user/{{this.productDetails._id}}/cart" method="post">
-<button type="submit">Añadir al carrito</button>
+<button type="submit">Add to cart</button>
 
 
 </form>
 
   {{#if isAdmin}}
-  <a href="/product/{{this.productDetails._id}}/edit">Editar un producto</a>
+  <a href="/product/{{this.productDetails._id}}/edit">Edit</a>
   {{/if}}
 
 

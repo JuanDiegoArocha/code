@@ -58,7 +58,7 @@ const isAdminOrUser = require('../middleware/isAdminOrUser.middleware');
 //GET "/list" -> queremos ver la lista de todos los productos de la base de datos
 router.get("/list", isAdminOrUser, (req, res, next) => {
     Product.find()
-      .select({ name: 1, price: 1, }) // faltará la imagen aqui
+      .select({ name: 1, price: 1, image:1 }) // faltará la imagen aqui
       .then((allProducts) => {
         //console.log(allProducts);
   

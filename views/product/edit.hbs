@@ -1,6 +1,7 @@
 <div>
 
-<h3>Aquí queremos editar los productos ya existentes</h3>
+<h2>Edit</h2>
+
 
 {{!-- {{this.productDetails}} --}}
 {{!-- {{this.productDetails.name}}
@@ -15,32 +16,32 @@
 
 <form action="/product/{{this.productDetails._id}}/edit" method="post" enctype="multipart/form-data">
 
-<label for="name">Modificar nombre</label>
+<label for="name">New name</label>
 <input type="text" name="name" value="{{this.productDetails.name}}">
 <br>
-<label for="description">Modificar descripción</label>
+<label for="description">New description</label>
 <input type="text" name="description" value="{{this.productDetails.description}}">
 <br>
-<label for="price">Modificar precio</label>
+<label for="price">New price</label>
 <input type="number" name="price" value="{{this.productDetails.price}}">
 <br>
-<label for="stock">Modificar stock</label>
+<label for="stock">New stock</label>
 <input type="number" name="stock" value="{{this.productDetails.stock}}">
 
-<label for="image">Nueva imagen</label>
+<label for="image">New image</label>
 <input type="file" name="image" value="{{this.productDetails.image}}">
 
 <br>
 <br>
 
-<button type="submit">Editar producto</button>
+<button type="submit">Edit product</button>
 <br>
 <br>
 <br>
 </form>
 
 <form action="/product/{{this.productDetails._id}}/delete" method="post">
- <button type="submit">Borrar Articulo</button>
+ <button type="submit">Delete product</button>
 </form>
 
 </div>
