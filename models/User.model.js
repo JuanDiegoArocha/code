@@ -48,6 +48,11 @@ item: {type: Schema.Types.ObjectId,
 ref: "Product"}
 }]
     },
+    role: {
+      type: String,
+      enum: ["user","admin"],
+      default: "user"
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
