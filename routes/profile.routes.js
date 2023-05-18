@@ -9,10 +9,12 @@ const Product= require("../models/Product.model")
 
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 const isAdmin = require('../middleware/isAdmin');
+const isAdminOrUser = require('../middleware/isAdminOrUser.middleware');
 
 // private route
 
-router.get('/profile', isLoggedIn, (req, res, next) => {
+router.get('/profile', isLoggedIn, isAdminOrUser, (req, res, next) => {
+
     
     User.findById(req.session.user._id)
     
@@ -38,7 +40,8 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
             address: user.address,
             city: user.city,
             postalCode: user.postalCode,
-            dateOfBirth: dateOfBirth
+            dateOfBirth: dateOfBirth,
+            isAdmin: req.session.user.role == "admin"
         });
 
     })
@@ -302,7 +305,8 @@ router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
 // //! ruta para el admin
 
  router.get("/admin",isLoggedIn, isAdmin, (req, res ,next) => {
-     res.render("admin/admin-dashboard.hbs")
+     res.render("user/admin-dashboard.hbs")
+     console.log(req.session.user)
  })
  
 //  router.get("/admin/list", isLoggedIn, isAdmin, (req,res,next) => {
