@@ -8,6 +8,7 @@ const Product= require("../models/Product.model")
 const Purchase= require("../models/Purchase.model")
 
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
+const isAdmin = require('../middleware/isAdmin');
 
 // private route
 
@@ -274,6 +275,16 @@ router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
 
 
   
+// //! ruta para el admin
+
+ router.get("/admin",isLoggedIn, isAdmin, (req, res ,next) => {
+     res.render("admin/admin-dashboard.hbs")
+ })
+ 
+//  router.get("/admin/list", isLoggedIn, isAdmin, (req,res,next) => {
+//     res.render("/product/list.hbs")
+//  })
+
 
 
 

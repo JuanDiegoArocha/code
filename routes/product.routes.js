@@ -152,6 +152,9 @@ router.get("/:productId/details", (req, res, next) => {
           next(err);
         });
     });
+
+
+    
  
 
 //? PREGUNTAR MAÑANA A JORGE POR LA RUTA 
