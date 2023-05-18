@@ -1,7 +1,9 @@
 const express = require('express');
 const Product = require('../models/Product.model');
 const router = express.Router();
-const uploader = require("../middleware/uploader.js")
+const uploader = require("../middleware/uploader.js");
+const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
+const isAdmin = require('../middleware/isAdmin');
 
 
 //! Ruta para agregar productos en la base de datos
@@ -13,7 +15,7 @@ const uploader = require("../middleware/uploader.js")
 
 
  //POST "/create" => Añadir más stock de un producto que ya existe
- router.post("/create", uploader.single("image") ,async (req, res, next) => {
+ router.post("/create", isLoggedIn, isAdmin ,uploader.single("image") ,async (req, res, next) => {
  try{
   //const{ name, description, price, stock, } = req.body;
   console.log(req.body)
@@ -72,7 +74,7 @@ router.get("/list", (req, res, next) => {
  //! Ruta para editar productos en la base de datos
  //GET "/:productId/edit" -> renderizar un formulario de edit (con los valores actuales del producto)
 
- router.get("/:productId/edit",(req, res, next) => {
+ router.get("/:productId/edit",isLoggedIn,isAdmin,(req, res, next) => {
     //queremos buscar los detalles del producto por su id y los pasamos a la vista
     Product.findById(req.params.productId)
     //.populate("name")
@@ -94,7 +96,7 @@ router.get("/list", (req, res, next) => {
 // //! Ruta para poder editar los datos de un producto
  //POST "/:productId/edit" => editar los datos del producto y actualizarlo en la BD
 
-router.post("/:productId/edit", uploader.single("image") , async (req, res, next) => {
+router.post("/:productId/edit", isLoggedIn, isAdmin ,uploader.single("image") , async (req, res, next) => {
     try{
      //const{ name, description, price, stock, image } = req.body;
      const result = await Product.findByIdAndUpdate(
@@ -141,7 +143,7 @@ router.get("/:productId/details", (req, res, next) => {
 
        //! Ruta borrar productos de la lista
 
-   router.post("/:productId/delete", (req, res, next) => {
+   router.post("/:productId/delete",isLoggedIn, isAdmin ,(req, res, next) => {
     
       Product.findByIdAndDelete(req.params.productId)
     

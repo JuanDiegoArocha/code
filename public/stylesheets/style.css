@@ -10,3 +10,7 @@ a {
 h1 {
   color: 15px;
 }
+
+html{
+  background-image: url('../images/Fondos/blanco.jpg');
+}
