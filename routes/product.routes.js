@@ -109,7 +109,7 @@ router.post("/:productId/edit", isLoggedIn, isAdmin ,uploader.single("image") , 
           description: req.body.description,
           price: req.body.price,
           stock: req.body.stock,
-          image: req.file.path,
+          image: req.file,
      },
      {new: true}
      )
