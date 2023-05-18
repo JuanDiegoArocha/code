@@ -9,10 +9,11 @@ const Purchase= require("../models/Purchase.model")
 
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 const isAdmin = require('../middleware/isAdmin');
+const isAdminOrUser = require('../middleware/isAdminOrUser.middleware');
 
 // private route
 
-router.get('/profile', isLoggedIn, isAdmin, (req, res, next) => {
+router.get('/profile', isLoggedIn, isAdminOrUser, (req, res, next) => {
 
     
     User.findById(req.session.user._id)
@@ -39,7 +40,8 @@ router.get('/profile', isLoggedIn, isAdmin, (req, res, next) => {
             address: user.address,
             city: user.city,
             postalCode: user.postalCode,
-            dateOfBirth: dateOfBirth
+            dateOfBirth: dateOfBirth,
+            isAdmin: req.session.user.role == "admin"
         });
 
     })
