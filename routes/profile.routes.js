@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const User= require("../models/User.model")
 const Product= require("../models/Product.model")
-const Purchase= require("../models/Purchase.model")
+// const Purchase= require("../models/Purchase.model")
 
 const isLoggedIn = require('../middleware/isLoggedIn.middlewares');
 const isAdmin = require('../middleware/isAdmin');
@@ -102,13 +102,17 @@ router.post("/edit-profile", isLoggedIn, async (req, res, next) => {
 
 
 
+
+
+
+
 // GET Cart route
 router.get("/:userId/cart", isLoggedIn, async (req, res, next) => {
     
     try {      
         
         const userId = req.session.user._id; 
-
+        
         const userCart = await User.findById(userId)
          .populate({
              path: "cart",
@@ -120,18 +124,16 @@ router.get("/:userId/cart", isLoggedIn, async (req, res, next) => {
         // .populate("cart.item")
         .select("cart")
         console.log(userCart)
-     
-
-
-
         
-        res.render("user/cart.hbs", { userCart })
-
-    } catch (error) {
-        next (error)
-    }
-
-})
+        
+                res.render("user/cart.hbs", { userCart })
+        
+            } catch (error) {
+                next (error)
+            }
+        
+        })
+     
 
 
 // POST route "/cart" => add to cart 
@@ -155,6 +157,7 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
 })
 
 
+<<<<<<< HEAD
  // POST route "/:productId/remove" => remove from cart
  router.post("/:productId/remove", isLoggedIn, async (req, res, next) => {
      try {
@@ -168,6 +171,26 @@ router.post("/:productId/cart", isLoggedIn, async (req, res, next) => {
          await user.save()
 
          res.redirect(`/user/${userId}/cart`)
+=======
+// // POST route "/:productId/remove" => remove from cart
+// route.post("/:productId/remove", async (req, res, next) => {
+//     try {
+
+//         const productId = req.params.productId;
+//         const userId = req.session.user._id; 
+
+//         User.findById(userId)
+//         // Cuando tengamos el carrito, vamos a hacer un nuevo array para luego remover un producto de ese nuevo array y luego actualizar el carrito con ese nuevo array.
+
+
+
+        
+//     } catch (error) {
+//      next(error)   
+//     }
+// }) 
+
+>>>>>>> b0343f9621c6c1baa6a0eb79ed6b79cf82f8a416
 
 
      } catch (error) {
@@ -193,6 +216,7 @@ router.post("/remove-cart", isLoggedIn, async (req, res, next) => {
     }
 })
 
+<<<<<<< HEAD
 
 // // GET route "/:productId/pay" => go to payment page
 // router.get("/:productId/pay", isLoggedIn, async (req, res, next) => {
@@ -285,7 +309,9 @@ router.get("/purchase-history", isLoggedIn, async (req, res, next) => {
 //     res.render("/product/list.hbs")
 //  })
 
-
+=======
+>>>>>>> b0343f9621c6c1baa6a0eb79ed6b79cf82f8a416
 
 
 module.exports = router;
+
