@@ -1,49 +1,46 @@
 <div class="form-create">
 
-<h2 class="h3-create">Edit</h2>
+  <h2 class="h3-create">Edit</h2>
+    <div class="input-group">
+  <form
+    class="create-form"
+    action="/product/{{this.productDetails._id}}/edit"
+    method="post"
+    enctype="multipart/form-data"
+  >
 
+    <label class="form-group-text" for="name">New name</label>
+    <input class="form-control" type="text" name="name" value="{{this.productDetails.name}}" />
+    
+    <label class="form-group-text" for="description">New description</label>
+    <input
+      class="form-control" type="text"
+      name="description"
+      value="{{this.productDetails.description}}"
+    />
+    
+    <label class="form-group-text" for="price">New price</label>
+    <input class="form-control" type="number" name="price" value="{{this.productDetails.price}}" />
+    
+    <label class="form-group-text" for="stock">New stock</label>
+    <input class="form-control" type="number" name="stock" value="{{this.productDetails.stock}}" />
 
-{{!-- {{this.productDetails}} --}}
-{{!-- {{this.productDetails.name}}
-<br>
-{{this.productDetails.description}}
-<br>
-{{this.productDetails.price}}
-<br>
-{{this.productDetails.stock}}
-<br> --}}
+    
 
+    <label class="form-group-text" for="image">New image</label>
+    <input class="form-control" type="file" name="image" value="{{this.productDetails.image}}" />
 
-<form class="create-form" action="/product/{{this.productDetails._id}}/edit" method="post" enctype="multipart/form-data">
+    
+    
 
-<label for="name">New name</label>
-<input type="text" name="name" value="{{this.productDetails.name}}">
-<br>
-<label for="description">New description</label>
-<input type="text" name="description" value="{{this.productDetails.description}}">
-<br>
-<label for="price">New price</label>
-<input type="number" name="price" value="{{this.productDetails.price}}">
-<br>
-<label for="stock">New stock</label>
-<input type="number" name="stock" value="{{this.productDetails.stock}}">
-
-<br>
-
-<label for="image">New image</label>
-<input type="file" name="image" value="{{this.productDetails.image}}">
-
-<br>
-<br>
-
-<button type="submit">Edit product</button>
-<br>
-<br>
-<br>
-</form>
-
-<form action="/product/{{this.productDetails._id}}/delete" method="post">
- <button type="submit">Delete product</button>
-</form>
+    <button type="submit">Edit product</button>
+    
+    
+  </form>
+    
+</div>
+  <form action="/product/{{this.productDetails._id}}/delete" method="post">
+    <button type="submit">Delete product</button>
+  </form>
 
 </div>

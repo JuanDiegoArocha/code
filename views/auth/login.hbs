@@ -2,16 +2,18 @@
 
     <h1 class="h1-login">Log in</h1>
 
-    <form action="/auth/login" method="post">
+<div class="input-group">
+
+    <form class="create-form" action="/auth/login" method="post">
     
     <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email">
+        <label class="form-group-text" for="email">Email:</label>
+        <input class="form-control" type="email" name="email">
     </div>
 
     <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password">
+        <label class="form-group-text" for="password">Password:</label>
+        <input class="form-control" type="password" name="password">
     </div>
 
     <button class="btn-access">Access</button>
@@ -21,5 +23,6 @@
     {{/if}}
     
     </form>
+</div>
 
 </div>

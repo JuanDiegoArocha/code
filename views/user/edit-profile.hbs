@@ -1,43 +1,44 @@
 <div class="form-create">
     
   <h2>Edit profile</h2>
+  <div class="input-group">
 
-  <form action="/user/edit-profile" method="post">
+  <form class="create-form" action="/user/edit-profile" method="post">
 
-    <label for="firstName">First name</label>git
-    <input type="text" name="firstName" value="{{ user.firstName }}">
+    <label class="form-group-text" for="firstName">First name</label>git
+    <input class="form-control" type="text" name="firstName" value="{{ user.firstName }}">
 
-    <br>
-    <label for="lastName">Last name</label>
-    <input type="text" name="lastName" value="{{ user.lastName }}">
+ 
+    <label class="form-group-text" for="lastName">Last name</label>
+    <input class="form-control" type="text" name="lastName" value="{{ user.lastName }}">
 
-    <br>
+ 
 
-    <label for="email">Email</label>
-    <input type="email" name="email" value="{{ user.email }}">
+    <label class="form-group-text" for="email">Email</label>
+    <input class="form-control" type="email" name="email" value="{{ user.email }}">
 
-    <br>
+ 
 
-    <label for="address">Address</label>
-    <input type="text" name="address" value="{{ user.address }}">
+    <label class="form-group-text" for="address">Address</label>
+    <input class="form-control" type="text" name="address" value="{{ user.address }}">
 
-    <br>
+ 
 
-    <label for="city">City</label>
-    <input type="text" name="city" value="{{ user.city }}">
+    <label class="form-group-text" for="city">City</label>
+    <input class="form-control" type="text" name="city" value="{{ user.city }}">
 
-    <br>
+ 
 
-    <label for="postalCode">Postal code</label>
-    <input type="text" name="postalCode" value="{{ user.postalCode }}">
+    <label class="form-group-text" for="postalCode">Postal code</label>
+    <input class="form-control" type="text" name="postalCode" value="{{ user.postalCode }}">
 
-    <br>
+ 
 
-    <label for="dateOfBirth">Birthdate:</label>
-    <input type="date" name="dateOfBirth" value="{{ user.dateOfBirth }}">
+    <label class="form-group-text" for="dateOfBirth">Birthdate:</label>
+    <input class="form-control" type="date" name="dateOfBirth" value="{{ user.dateOfBirth }}">
 
 
-    <br>
+ </div>
 
     <button>Update</button>
 
