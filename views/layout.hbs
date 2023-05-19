@@ -17,35 +17,31 @@
   </head>
   <body>
 
-
-
     <nav class="navbar fixed-top bg-dark">
 
       <div class="container-md">
 
-      <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/">Home</a>
 
-      <a class="navbar-brand" href="/product/list">List of products</a>
+        <a class="navbar-brand" href="/product/list">List of products</a>
 
-      {{#if isUserActive}}
+        {{#if isUserActive}}
 
-        <a class="navbar-brand" href="/user/profile">Profile</a>
+          <a class="navbar-brand" href="/user/profile">Profile</a>
 
-        <a class="navbar-brand" href="/user/:userId/cart">Cart</a>
+          <a class="navbar-brand" href="/user/:userId/cart">Cart</a>
 
-        <a class="navbar-brand" href="/auth/logout">Logout</a>
+          <a class="navbar-brand" href="/auth/logout">Logout</a>
 
-      {{else}}
+        {{else}}
 
-        <a class="navbar-brand" href="/auth/signup">Sign up</a>
+          <a class="navbar-brand" href="/auth/signup">Sign up</a>
 
-        <a class="navbar-brand" href="/auth/login">Log in</a>
+          <a class="navbar-brand" href="/auth/login">Log in</a>
 
-      {{/if}}
-
+        {{/if}}
 
       </div>
-
 
     </nav>
 
@@ -59,6 +55,5 @@
     <script src="/js/script.js"></script>
 
   </body>
-
 
 </html>

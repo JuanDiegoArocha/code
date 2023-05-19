@@ -7,17 +7,17 @@ const userSchema = new Schema(
       type: String,
       trim: true,
       required: false,
-      unique: true
+      unique: true,
     },
     lastName: {
       type: String,
       trim: true,
       required: false,
-      unique: true 
+      unique: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
@@ -27,43 +27,45 @@ const userSchema = new Schema(
     },
     address: {
       type: String,
-      required: true
+      required: true,
     },
     city: {
       type: String,
-      required: true
+      required: true,
     },
     postalCode: {
       type: String,
-      required: true
+      required: true,
     },
     dateOfBirth: {
       type: Date,
-      required: true
+      required: true,
     },
     cart: {
-type: [{
-quantity: {type: Number},
-item: {type: Schema.Types.ObjectId,
-ref: "Product"},
-}]
+      type: [
+        {
+          quantity: { type: Number },
+          item: { type: Schema.Types.ObjectId, ref: "Product" },
+        },
+      ],
     },
 
-    purchasedItems: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Product'
-    }],
+    purchasedItems: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
 
     role: {
       type: String,
-      enum: ["user","admin"],
-      default: "user"
-    }
-
+      enum: ["user", "admin"],
+      default: "user",
+    },
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
-    timestamps: true
+    // this second object adds extra properties: `createdAt` and `updatedAt`
+    timestamps: true,
   }
 );
 

@@ -1,44 +1,59 @@
 <div class="form-create">
 
   <h2 class="h3-create">Edit</h2>
-    <div class="input-group">
-  <form
-    class="create-form"
-    action="/product/{{this.productDetails._id}}/edit"
-    method="post"
-    enctype="multipart/form-data"
-  >
+  <div class="input-group">
+    <form
+      class="create-form"
+      action="/product/{{this.productDetails._id}}/edit"
+      method="post"
+      enctype="multipart/form-data"
+    >
 
-    <label class="form-group-text" for="name">New name</label>
-    <input class="form-control" type="text" name="name" value="{{this.productDetails.name}}" />
-    
-    <label class="form-group-text" for="description">New description</label>
-    <input
-      class="form-control" type="text"
-      name="description"
-      value="{{this.productDetails.description}}"
-    />
-    
-    <label class="form-group-text" for="price">New price</label>
-    <input class="form-control" type="number" name="price" value="{{this.productDetails.price}}" />
-    
-    <label class="form-group-text" for="stock">New stock</label>
-    <input class="form-control" type="number" name="stock" value="{{this.productDetails.stock}}" />
+      <label class="form-group-text" for="name">New name</label>
+      <input
+        class="form-control"
+        type="text"
+        name="name"
+        value="{{this.productDetails.name}}"
+      />
 
-    
+      <label class="form-group-text" for="description">New description</label>
+      <input
+        class="form-control"
+        type="text"
+        name="description"
+        value="{{this.productDetails.description}}"
+      />
 
-    <label class="form-group-text" for="image">New image</label>
-    <input class="form-control" type="file" name="image" value="{{this.productDetails.image}}" />
+      <label class="form-group-text" for="price">New price</label>
+      <input
+        class="form-control"
+        type="number"
+        name="price"
+        value="{{this.productDetails.price}}"
+      />
 
-    
-    
+      <label class="form-group-text" for="stock">New stock</label>
+      <input
+        class="form-control"
+        type="number"
+        name="stock"
+        value="{{this.productDetails.stock}}"
+      />
 
-    <button type="submit">Edit product</button>
-    
-    
-  </form>
-    
-</div>
+      <label class="form-group-text" for="image">New image</label>
+      <input
+        class="form-control"
+        type="file"
+        name="image"
+        value="{{this.productDetails.image}}"
+      />
+
+      <button type="submit">Edit product</button>
+
+    </form>
+
+  </div>
   <form action="/product/{{this.productDetails._id}}/delete" method="post">
     <button type="submit">Delete product</button>
   </form>

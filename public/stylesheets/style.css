@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@300&family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anuphan:wght@300&family=Montserrat:wght@300&display=swap");
 
-*{
+* {
   font-family: "Montserrat";
   margin: 0;
 }
 .home {
   background-image: url(../images/Fondos/blanco.jpg);
   background-position: center;
-  background-size:auto;
+  background-size: auto;
   width: 100%;
   height: 100%;
-  margin: 0; 
+  margin: 0;
 }
 
 #title {
@@ -44,7 +44,6 @@ body {
   height: auto;
   margin: 0;
   padding: 0;
-
 }
 
 .list-title {
@@ -54,31 +53,10 @@ body {
   color: rgb(211, 202, 202);
   padding-bottom: 2%;
 }
-/* 
-#item-card {
-  display: flex;
-  flex-wrap: nowrap;
-
-} */
-
-
-/* #card {
-  background: none;
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
-  width: 200px;
-  height: 300px;
-  border-radius: 10%;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;
-} */
 
 .card-img-top {
   width: 135px;
   height: 150px;
-
 }
 
 .create-product {
@@ -89,7 +67,8 @@ body {
   background-color: transparent;
 }
 
-.create-link, .product-link {
+.create-link,
+.product-link {
   text-decoration: none;
   color: rgb(211, 202, 202);
 }
@@ -100,18 +79,16 @@ body {
 }
 
 .form-create {
-padding-top: 15%;
-padding-left: 40%;
-background-image: url(../images/Fondos/gris.jpg);
-background-size: auto;
-background-position: center;
-width: 100%;
-height: 100%;
-margin: 0;
-color: white;
+  padding-top: 15%;
+  padding-left: 40%;
+  background-image: url(../images/Fondos/gris.jpg);
+  background-size: auto;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: white;
 }
-
-
 
 .h3-create {
   padding-bottom: 5%;
@@ -145,7 +122,8 @@ color: white;
   margin: 0;
 }
 
-.btn-logout, .btn-editprofile {
+.btn-logout,
+.btn-editprofile {
   border-color: transparent;
   background-color: transparent;
   padding-left: 47%;
@@ -181,8 +159,8 @@ color: white;
   font-weight: bold;
 }
 
-
-.btn-editimage, .btn-add {
+.btn-editimage,
+.btn-add {
   border-color: transparent;
   background-color: transparent;
   font-size: 30px;
@@ -210,7 +188,8 @@ color: white;
   color: white;
 }
 
-.btn-pay, .btn-remove {
+.btn-pay,
+.btn-remove {
   border-color: transparent;
   background-color: transparent;
   align-items: center;
@@ -247,8 +226,8 @@ color: white;
 }
 
 .h1-login {
-padding-bottom: 5%;
-padding-left: 5%;
+  padding-bottom: 5%;
+  padding-left: 5%;
 }
 
 .btn-access {
@@ -259,7 +238,4 @@ padding-left: 5%;
   font-size: 30px;
   padding-top: 1%;
   padding-left: 6%;
-
 }
-
-

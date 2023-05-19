@@ -18,7 +18,7 @@ const favicon = require("serve-favicon");
 const path = require("path");
 
 const session = require("express-session");
-const MongoStore = require("connect-mongo")
+const MongoStore = require("connect-mongo");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -38,19 +38,24 @@ module.exports = (app) => {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
 
-  app.use(session({
-    secret: process.env.SESSION_SECRET,
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
       cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // Live for 24 hours
+        maxAge: 1000 * 60 * 60 * 24, // Live for 24 hours
       },
       store: new MongoStore({
-        mongoUrl:  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/high-stakes-proyect",
-        ttl: 60 * 60 * 24 // 24 hours
-      })
-  }))
-  
+        mongoUrl:
+          process.env.MONGODB_URI ||
+          "mongodb://127.0.0.1:27017/high-stakes-proyect",
+        ttl: 60 * 60 * 24, // 24 hours
+      }),
+    })
+  );
 };

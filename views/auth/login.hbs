@@ -1,28 +1,28 @@
 <div class="form-create">
 
-    <h1 class="h1-login">Log in</h1>
+  <h1 class="h1-login">Log in</h1>
 
-<div class="input-group">
+  <div class="input-group">
 
     <form class="create-form" action="/auth/login" method="post">
-    
-    <div>
+
+      <div>
         <label class="form-group-text" for="email">Email:</label>
-        <input class="form-control" type="email" name="email">
-    </div>
+        <input class="form-control" type="email" name="email" />
+      </div>
 
-    <div>
+      <div>
         <label class="form-group-text" for="password">Password:</label>
-        <input class="form-control" type="password" name="password">
-    </div>
+        <input class="form-control" type="password" name="password" />
+      </div>
 
-    <button class="btn-access">Access</button>
+      <button class="btn-access">Access</button>
 
-    {{#if this.errorMessage}}
-    <p style="color: red;">{{this.errorMessage}}</p>
-    {{/if}}
-    
+      {{#if this.errorMessage}}
+        <p style="color: red;">{{this.errorMessage}}</p>
+      {{/if}}
+
     </form>
-</div>
+  </div>
 
 </div>
